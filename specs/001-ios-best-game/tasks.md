@@ -1,23 +1,27 @@
 ---
 
-description: "白い嘘 — One Minute Interrogation タスクリスト"
+description: "白い嘘 — Loops of Truth タスクリスト"
 ---
 
-# Tasks: 白い嘘 — One Minute Interrogation
+# Tasks: 白い嘘 — Loops of Truth
 
 **Input**: specs/001-ios-best-game/ 以下の設計ドキュメント
 **Prerequisites**: plan.md ✅, spec.md ✅, research.md ✅, data-model.md ✅, contracts/ ✅
 
-**テスト方針**: Constitution III「Test-First (NON-NEGOTIABLE)」に従い、矛盾検出・ゲージ計算・タイマー・スコアのコアロジックは XCTest を**実装より先に**書いてRedを確認する。
+**Note**: 旧「One Minute Interrogation」(自由テキスト入力 / 60 秒) のタスクは Phase 1〜4 で完了済み。
+本タスク表は 2026-05-08 のコンセプト転換（選択肢 + ハイブリッドループ + 6 ターン制）後の状態を記録。
+Phase 9 として新コンセプトの実装タスクを追加した。
+
+**テスト方針**: Constitution III「Test-First (NON-NEGOTIABLE)」に従い、コアロジックは XCTest でカバー。
 
 ---
 
 ## Phase 1: Setup（プロジェクト基盤）
 
-- [ ] T001 ClaudeBestGame/ 以下に Models/ ViewModels/ Views/Root/ Views/Menu/ Views/Interrogation/ Views/Result/ Views/Ending/ Services/AI/ Services/Game/ Services/Persistence/ Resources/Personas/ Resources/FallbackCases/ のフォルダとXcodeグループを作成する
-- [ ] T002 [P] ClaudeBestGame/Resources/FallbackCases/cases.json を作成し、フォールバック用固定事件10件（caseType / victimName / suspectName / alibiStory / weakPoint / contradictionKeywords / scriptedAnswers を含む）をJSON配列で記述する
-- [ ] T003 [P] ClaudeBestGame/Resources/Personas/stoic.txt anxious.txt aggressive.txt pitiful.txt intellectual.txt を作成し、各人格タイプの口調・態度の追加システムプロンプト（30〜100文字日本語）を記述する
-- [ ] T004 [P] ClaudeBestGame/Resources/Personas/boss.txt を作成し、黒幕戦専用の最高難度システムプロンプト（200文字程度、人格は intellectual + stoic のハイブリッド）を記述する
+- [X] T001 ClaudeBestGame/ 以下に Models/ ViewModels/ Views/Root/ Views/Menu/ Views/Interrogation/ Views/Result/ Views/Ending/ Services/AI/ Services/Game/ Services/Persistence/ Resources/Personas/ Resources/FallbackCases/ のフォルダとXcodeグループを作成する
+- [X] T002 [P] ClaudeBestGame/Resources/FallbackCases/cases.json を作成し、フォールバック用固定事件10件（caseType / victimName / suspectName / alibiStory / weakPoint / contradictionKeywords / scriptedAnswers を含む）をJSON配列で記述する
+- [X] T003 [P] ClaudeBestGame/Resources/Personas/stoic.txt anxious.txt aggressive.txt pitiful.txt intellectual.txt を作成し、各人格タイプの口調・態度の追加システムプロンプト（30〜100文字日本語）を記述する
+- [X] T004 [P] ClaudeBestGame/Resources/Personas/boss.txt を作成し、黒幕戦専用の最高難度システムプロンプト（200文字程度、人格は intellectual + stoic のハイブリッド）を記述する
 
 ---
 
@@ -25,14 +29,14 @@ description: "白い嘘 — One Minute Interrogation タスクリスト"
 
 **⚠️ CRITICAL**: ここが終わるまで Phase 3 以降を開始しない。
 
-- [ ] T005 ClaudeBestGame/Models/CaseRecord.swift を作成し、data-model.md の CaseRecord @Model クラスを実装する
-- [ ] T006 [P] ClaudeBestGame/Models/SuspectRecord.swift を作成し、SuspectRecord @Model を実装する
-- [ ] T007 [P] ClaudeBestGame/Models/InterrogationTurn.swift を作成し、InterrogationTurn @Model を実装する
-- [ ] T008 [P] ClaudeBestGame/Models/PlaySession.swift を作成し、PlaySession @Model を実装する（result/finalGauge/remainingSeconds のバリデーション含む）
-- [ ] T009 [P] ClaudeBestGame/Models/Progress.swift を作成し、Progress @Model（id固定値）と highScoreByType の Codable エンコード/デコードヘルパを実装する
-- [ ] T010 ClaudeBestGameApp.swift を更新し、5モデルを含む ModelContainer を生成して App レベルで提供する
-- [ ] T011 ClaudeBestGame/Services/Persistence/ProgressRepository.swift を作成し、Progress シングルトン取得・更新・ハイスコア更新のヘルパを実装する
-- [ ] T012 ClaudeBestGame/Views/Root/RootView.swift を作成し、状態駆動の View 切替（メニュー/尋問/結果/エンディング）の骨格を実装する
+- [X] T005 ClaudeBestGame/Models/CaseRecord.swift を作成し、data-model.md の CaseRecord @Model クラスを実装する
+- [X] T006 [P] ClaudeBestGame/Models/SuspectRecord.swift を作成し、SuspectRecord @Model を実装する
+- [X] T007 [P] ClaudeBestGame/Models/InterrogationTurn.swift を作成し、InterrogationTurn @Model を実装する
+- [X] T008 [P] ClaudeBestGame/Models/PlaySession.swift を作成し、PlaySession @Model を実装する（result/finalGauge/remainingSeconds のバリデーション含む）
+- [X] T009 [P] ClaudeBestGame/Models/Progress.swift を作成し、Progress @Model（id固定値）と highScoreByType の Codable エンコード/デコードヘルパを実装する
+- [X] T010 ClaudeBestGameApp.swift を更新し、5モデルを含む ModelContainer を生成して App レベルで提供する
+- [X] T011 ClaudeBestGame/Services/Persistence/ProgressRepository.swift を作成し、Progress シングルトン取得・更新・ハイスコア更新のヘルパを実装する
+- [X] T012 ClaudeBestGame/Views/Root/RootView.swift を作成し、状態駆動の View 切替（メニュー/尋問/結果/エンディング）の骨格を実装する
 
 **Checkpoint**: アプリが起動して空のメニュー画面が表示されることを確認する。
 
@@ -45,28 +49,28 @@ description: "白い嘘 — One Minute Interrogation タスクリスト"
 
 ### US1 テスト（先に書いてRedを確認）
 
-- [ ] T013 [P] [US1] ClaudeBestGameTests/InterrogationTimerTests.swift を作成し、start(seconds: 60) が60秒後に remainingSeconds=0 に到達すること、pause()/resume() で経過時間が保持されることをテストする
-- [ ] T014 [P] [US1] ClaudeBestGameTests/ConfessionGaugeEngineTests.swift を作成し、severity=large + difficulty=1 で +30%、severity=medium + difficulty=5 で +9% になることをテストする
-- [ ] T015 [P] [US1] ClaudeBestGameTests/ScoreCalculatorTests.swift を作成し、敗北時0点・勝利時 base+bonus 計算・黒幕戦×3倍をテストする
+- [X] T013 [P] [US1] ClaudeBestGameTests/InterrogationTimerTests.swift を作成し、start(seconds: 60) が60秒後に remainingSeconds=0 に到達すること、pause()/resume() で経過時間が保持されることをテストする
+- [X] T014 [P] [US1] ClaudeBestGameTests/ConfessionGaugeEngineTests.swift を作成し、severity=large + difficulty=1 で +30%、severity=medium + difficulty=5 で +9% になることをテストする
+- [X] T015 [P] [US1] ClaudeBestGameTests/ScoreCalculatorTests.swift を作成し、敗北時0点・勝利時 base+bonus 計算・黒幕戦×3倍をテストする
 
 ### US1 実装
 
-- [ ] T016 [US1] ClaudeBestGame/Services/Game/InterrogationTimer.swift を作成し、research.md の高精度タイマー設計（50ms 解像度、@Observable、pause/resume対応）を実装する
-- [ ] T017 [US1] ClaudeBestGame/Services/Game/ConfessionGaugeEngine.swift を作成し、contracts/ai-tools.md の ConfessionGaugeEngine アルゴリズムを純粋関数として実装する
-- [ ] T018 [US1] ClaudeBestGame/Services/Game/ScoreCalculator.swift を作成し、contracts/ai-tools.md の ScoreCalculator アルゴリズムを実装する
-- [ ] T019 [US1] ClaudeBestGame/Services/AI/FallbackCaseProvider.swift を作成し、Resources/FallbackCases/cases.json をデコードしてランダム事件を返す処理を実装する
-- [ ] T020 [US1] ClaudeBestGame/ViewModels/InterrogationViewModel.swift を作成し、@Observable で事件・容疑者・タイマー・ゲージ・対話ログ・送信状態を管理する（実装初期はフォールバック容疑者を使用：事件JSONのscriptedAnswersから返答）
-- [ ] T021 [P] [US1] ClaudeBestGame/Views/Interrogation/TimerBar.swift を作成し、残り秒数を視覚化する横バー（残り10秒で赤化）を実装する
-- [ ] T022 [P] [US1] ClaudeBestGame/Views/Interrogation/ConfessionGauge.swift を作成し、ゲージ値を視覚化（上昇時に赤フラッシュ + Haptics）するViewを実装する
-- [ ] T023 [P] [US1] ClaudeBestGame/Views/Interrogation/SuspectAvatar.swift を作成し、SFSymbols + 人格タイプ別カラーで容疑者アバターを表示する
-- [ ] T024 [P] [US1] ClaudeBestGame/Views/Interrogation/DialogueLog.swift を作成し、ScrollView + 自動スクロール + 発話バブル表示を実装する
-- [ ] T025 [P] [US1] ClaudeBestGame/Views/Interrogation/QuestionInputBar.swift を作成し、TextField + 送信ボタン + キーボード追従を実装する
-- [ ] T026 [US1] ClaudeBestGame/Views/Interrogation/InterrogationView.swift を作成し、上記コンポーネントを統合した1画面レイアウトを構築する
-- [ ] T027 [P] [US1] ClaudeBestGame/Views/Result/VictoryView.swift を作成し、勝利演出（自白セリフアニメーション + スコア表示）を実装する
-- [ ] T028 [P] [US1] ClaudeBestGame/Views/Result/DefeatView.swift を作成し、敗北演出（真の動機公開 + リトライボタン）を実装する
-- [ ] T029 [US1] ClaudeBestGame/ViewModels/GameRootViewModel.swift を作成し、メニュー→尋問→結果→メニューの画面遷移ロジックを実装する
-- [ ] T030 [US1] ClaudeBestGame/Views/Menu/MenuView.swift を作成し、「事件開始」「ハイスコア」「黒幕戦（ロック表示）」ボタンを配置する
-- [ ] T031 [US1] InterrogationViewModel に PlaySession の SwiftData 保存ロジック（開始時新規作成、終了時更新）を追加する
+- [X] T016 [US1] ClaudeBestGame/Services/Game/InterrogationTimer.swift を作成し、research.md の高精度タイマー設計（50ms 解像度、@Observable、pause/resume対応）を実装する
+- [X] T017 [US1] ClaudeBestGame/Services/Game/ConfessionGaugeEngine.swift を作成し、contracts/ai-tools.md の ConfessionGaugeEngine アルゴリズムを純粋関数として実装する
+- [X] T018 [US1] ClaudeBestGame/Services/Game/ScoreCalculator.swift を作成し、contracts/ai-tools.md の ScoreCalculator アルゴリズムを実装する
+- [X] T019 [US1] ClaudeBestGame/Services/AI/FallbackCaseProvider.swift を作成し、Resources/FallbackCases/cases.json をデコードしてランダム事件を返す処理を実装する
+- [X] T020 [US1] ClaudeBestGame/ViewModels/InterrogationViewModel.swift を作成し、@Observable で事件・容疑者・タイマー・ゲージ・対話ログ・送信状態を管理する（実装初期はフォールバック容疑者を使用：事件JSONのscriptedAnswersから返答）
+- [X] T021 [P] [US1] ClaudeBestGame/Views/Interrogation/TimerBar.swift を作成し、残り秒数を視覚化する横バー（残り10秒で赤化）を実装する
+- [X] T022 [P] [US1] ClaudeBestGame/Views/Interrogation/ConfessionGauge.swift を作成し、ゲージ値を視覚化（上昇時に赤フラッシュ + Haptics）するViewを実装する
+- [X] T023 [P] [US1] ClaudeBestGame/Views/Interrogation/SuspectAvatar.swift を作成し、SFSymbols + 人格タイプ別カラーで容疑者アバターを表示する
+- [X] T024 [P] [US1] ClaudeBestGame/Views/Interrogation/DialogueLog.swift を作成し、ScrollView + 自動スクロール + 発話バブル表示を実装する
+- [X] T025 [P] [US1] ClaudeBestGame/Views/Interrogation/QuestionInputBar.swift を作成し、TextField + 送信ボタン + キーボード追従を実装する
+- [X] T026 [US1] ClaudeBestGame/Views/Interrogation/InterrogationView.swift を作成し、上記コンポーネントを統合した1画面レイアウトを構築する
+- [X] T027 [P] [US1] ClaudeBestGame/Views/Result/VictoryView.swift を作成し、勝利演出（自白セリフアニメーション + スコア表示）を実装する
+- [X] T028 [P] [US1] ClaudeBestGame/Views/Result/DefeatView.swift を作成し、敗北演出（真の動機公開 + リトライボタン）を実装する
+- [X] T029 [US1] ClaudeBestGame/ViewModels/GameRootViewModel.swift を作成し、メニュー→尋問→結果→メニューの画面遷移ロジックを実装する
+- [X] T030 [US1] ClaudeBestGame/Views/Menu/MenuView.swift を作成し、「事件開始」「ハイスコア」「黒幕戦（ロック表示）」ボタンを配置する
+- [X] T031 [US1] InterrogationViewModel に PlaySession の SwiftData 保存ロジック（開始時新規作成、終了時更新）を追加する
 
 **Checkpoint**: フォールバック事件1件で 開始→質問→返答→ゲージ上昇→勝利or敗北→メニュー戻り を実機で完走できる。
 
@@ -79,15 +83,15 @@ description: "白い嘘 — One Minute Interrogation タスクリスト"
 
 ### US2 テスト（先に書いてRedを確認）
 
-- [ ] T032 [P] [US2] ClaudeBestGameTests/ContradictionDetectorTests.swift を作成し、矛盾なしログで severity=none、明確な時刻矛盾で medium 以上、根幹矛盾で large が返ることをテストする（フォールバックモード：キーワードマッチング判定）
-- [ ] T033 [P] [US2] ClaudeBestGameTests/FallbackContradictionTests.swift を作成し、cases.json の contradictionKeywords を使った単純照合判定をテストする
+- [X] T032 [P] [US2] ClaudeBestGameTests/ContradictionDetectorTests.swift を作成し、矛盾なしログで severity=none、明確な時刻矛盾で medium 以上、根幹矛盾で large が返ることをテストする（フォールバックモード：キーワードマッチング判定）
+- [X] T033 [P] [US2] ClaudeBestGameTests/FallbackContradictionTests.swift を作成し、cases.json の contradictionKeywords を使った単純照合判定をテストする
 
 ### US2 実装
 
-- [ ] T034 [US2] ClaudeBestGame/Services/AI/ContradictionDetector.swift を作成し、Apple Foundation Models 利用可能時は別 LanguageModelSession + Structured Output（ContradictionResult @Generable）で判定、不可時はキーワード照合フォールバックする実装を行う
-- [ ] T035 [US2] InterrogationViewModel に ContradictionDetector を統合し、容疑者応答完了直後に矛盾判定 → ConfessionGaugeEngine でゲージ更新 → InterrogationTurn に severity と gaugeDelta を保存する処理を追加する
-- [ ] T036 [US2] ConfessionGauge.swift にゲージ上昇アニメーション（withAnimation easeOut 0.4s）+ severity=large 時の赤フラッシュエフェクトを実装する
-- [ ] T037 [US2] InterrogationViewModel に「ゲージ100%到達」検知ロジックを追加し、自白演出トリガーで VictoryView に遷移する処理を実装する
+- [X] T034 [US2] ClaudeBestGame/Services/AI/ContradictionDetector.swift を作成し、Apple Foundation Models 利用可能時は別 LanguageModelSession + Structured Output（ContradictionResult @Generable）で判定、不可時はキーワード照合フォールバックする実装を行う
+- [X] T035 [US2] InterrogationViewModel に ContradictionDetector を統合し、容疑者応答完了直後に矛盾判定 → ConfessionGaugeEngine でゲージ更新 → InterrogationTurn に severity と gaugeDelta を保存する処理を追加する
+- [X] T036 [US2] ConfessionGauge.swift にゲージ上昇アニメーション（withAnimation easeOut 0.4s）+ severity=large 時の赤フラッシュエフェクトを実装する
+- [X] T037 [US2] InterrogationViewModel に「ゲージ100%到達」検知ロジックを追加し、自白演出トリガーで VictoryView に遷移する処理を実装する
 
 **Checkpoint**: フォールバックモードで矛盾を含む質問→ゲージが目視で上がる→100%で勝利できる。
 
@@ -242,3 +246,56 @@ Task: T025 QuestionInputBar.swift
 - フォールバックモードは常に動作可能な状態を維持する（FR-010）
 - 60秒タイマーの精度が体験の核 → タイマーテストは絶対に手抜きしない
 - 矛盾検出が誤検出（false positive）を出すとゲームが破綻する → プロンプト調整は十分に検証する
+
+---
+
+## Phase 9: 選択肢ループへのコンセプト転換（2026-05-08 完了）
+
+### 設計変更
+旧「60 秒・自由テキスト入力」→ 新「6 ターン・動的選択肢・ハイブリッドループ」。
+
+### 完了タスク
+
+- [X] T100 新規モデル: `Models/QuestionChoice.swift`（カテゴリ enum 含む）
+- [X] T101 新規モデル: `Models/EvidenceItem.swift`（@Model、ループ跨ぎ永続化）
+- [X] T102 新規モデル: `Models/InvestigationNotebook.swift`（@Model、捜査メモ）
+- [X] T103 拡張モデル: `PlaySession.swift`（turnCount / loopIndex / vigilance）
+- [X] T104 拡張モデル: `CaseRecord.swift`（caseKey / stageNumber）
+- [X] T105 拡張モデル: `InterrogationTurn.swift`（chosenChoiceCategory / vigilanceAfter）
+- [X] T106 拡張モデル: `Progress.swift`（totalLoops / perfectClears / currentStage）
+- [X] T107 Schema 更新: `ClaudeBestGameApp.swift` に EvidenceItem / InvestigationNotebook 追加
+- [X] T108 純粋ロジック: `Services/Game/VigilanceEngine.swift`（警戒度更新）
+- [X] T109 純粋ロジック: `Services/Game/EvidenceTracker.swift`（証拠検出）
+- [X] T110 拡張ロジック: `ConfessionGaugeEngine.swift` にカテゴリ × 警戒度を統合
+- [X] T111 拡張ロジック: `ScoreCalculator.swift` にループ係数を追加
+- [X] T112 拡張ロジック: `ContradictionDetector.swift` にカテゴリ別判定追加
+- [X] T113 リソース: `cases.json` に choicePool / evidenceTriggers 追加（10 事件）
+- [X] T114 サービス: `FallbackCaseProvider.swift` を新スキーマに対応
+- [X] T115 サービス: `FallbackGuardian.swift` をカテゴリ別応答に拡張
+- [X] T116 サービス: `Services/AI/ChoiceGeneratorService.swift` 新規（フォールバック実装）
+- [X] T117 サービス: `ProgressRepository.swift` に notebook / evidence ヘルパ追加
+- [X] T118 ViewModel: `InterrogationViewModel.swift` ターン制 + ループに全面改修
+- [X] T119 ViewModel: `NotebookViewModel.swift` 新規
+- [X] T120 ViewModel: `GameRootViewModel.swift` に retrySameCase 追加
+- [X] T121 View 削除: `Views/Interrogation/QuestionInputBar.swift`
+- [X] T122 View 削除: `Views/Interrogation/TimerBar.swift`
+- [X] T123 View 新規: `Views/Interrogation/TurnIndicator.swift`
+- [X] T124 View 新規: `Views/Interrogation/VigilanceMeter.swift`
+- [X] T125 View 新規: `Views/Interrogation/QuestionChoicesView.swift`
+- [X] T126 View 新規: `Views/Notebook/NotebookView.swift`
+- [X] T127 View 新規: `Views/Notebook/EvidenceCard.swift`
+- [X] T128 View 改修: `Views/Interrogation/InterrogationView.swift`
+- [X] T129 View 改修: `Views/Interrogation/DialogueLog.swift`（カテゴリ表示）
+- [X] T130 View 改修: `Views/Result/VictoryView.swift`（パーフェクト表示）
+- [X] T131 View 改修: `Views/Result/DefeatView.swift`（再挑戦ボタン）
+- [X] T132 View 改修: `Views/Menu/MenuView.swift`（ステージ番号・ループ統計）
+- [X] T133 View 改修: `Views/Root/RootView.swift`（Schema 追加）
+- [X] T134 テスト更新: `ConfessionGaugeEngineTests.swift`（新シグネチャ・新値）
+- [X] T135 テスト新規: `VigilanceEngineTests.swift`（7 case）
+- [X] T136 テスト新規: `EvidenceTrackerTests.swift`（5 case）
+- [X] T137 テスト新規: `ChoiceGeneratorTests.swift`（5 case）
+- [X] T138 ビルド検証: BUILD SUCCEEDED on iPhone 17 Pro Simulator
+- [X] T139 テスト検証: 43 テスト全成功
+
+**結果**: 「結構難しい・選択肢・いい具合でループ」のユーザー要望を満たす実装が完成。
+オフライン・フォールバックモードでフルプレイ可能。次は Phase 5 (Apple Foundation Models 統合)。

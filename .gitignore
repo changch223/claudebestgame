@@ -1,1 +1,24 @@
 .claude/
+
+# macOS
+.DS_Store
+Thumbs.db
+
+# Xcode
+build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+
+# CocoaPods (not used but ignore for safety)
+Pods/
+
+# Carthage
+Carthage/Build/

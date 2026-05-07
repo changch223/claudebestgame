@@ -1,0 +1,402 @@
+[
+  {
+    "id": "fallback-001",
+    "stageNumber": 1,
+    "caseType": "murder",
+    "victimName": "山田 良一",
+    "weapon": "毒入りウイスキー",
+    "trueMotive": "被害者が会社の横領を告発しようとしたため、口封じに毒を盛った",
+    "difficulty": 1,
+    "suspectName": "佐藤 健司",
+    "suspectAge": 42,
+    "suspectJob": "経理部長",
+    "persona": "stoic",
+    "alibiStory": "事件当夜、私は午後8時から自宅で妻と一緒に夕食を取り、その後ずっと寝室にいました。出かけてはいません。",
+    "weakPoint": "妻は実際には海外出張中で、その時間自宅にいるはずがなかった",
+    "contradictionKeywords": ["妻", "出張", "海外", "一人", "誰か他", "別の人", "不在", "いない"],
+    "evidenceTriggers": [
+      {"keywords": ["妻", "出張", "海外"], "title": "妻の出張記録", "detail": "事件当夜、妻は海外出張中で自宅には不在だった"},
+      {"keywords": ["夕食", "食事", "メニュー"], "title": "夕食の不審点", "detail": "用意されていた食事は1人前だけだった"},
+      {"keywords": ["時間", "帰宅", "何時"], "title": "帰宅時刻の食い違い", "detail": "監視カメラには午後10時帰宅と記録されている"}
+    ],
+    "choicePool": {
+      "opening": [
+        {"text": "事件当夜、どこで何をしていましたか？", "category": "neutral"},
+        {"text": "山田さんとは普段どんな関係でしたか？", "category": "neutral"},
+        {"text": "経理部で何か不正を見つけたことは？", "category": "pressing"},
+        {"text": "あなたが犯人ではありませんか？", "category": "aggressive"}
+      ],
+      "pressing": [
+        {"text": "夕食のメニューを覚えていますか？", "category": "pressing"},
+        {"text": "奥さんは普段どんな仕事を？", "category": "pressing"},
+        {"text": "帰宅時刻は正確に何時でしたか？", "category": "pressing"},
+        {"text": "横領の話を山田さんから聞きましたか？", "category": "pressing"}
+      ],
+      "aggressive": [
+        {"text": "嘘をついても無駄ですよ", "category": "aggressive"},
+        {"text": "あなたは追い詰められている", "category": "aggressive"},
+        {"text": "山田さんを殺したのはあなたでしょう", "category": "aggressive"}
+      ]
+    }
+  },
+  {
+    "id": "fallback-002",
+    "stageNumber": 2,
+    "caseType": "theft",
+    "victimName": "田中商事 金庫",
+    "weapon": "合鍵による侵入",
+    "trueMotive": "ギャンブルの借金返済のため、勤務先の金庫から500万円を盗んだ",
+    "difficulty": 1,
+    "suspectName": "鈴木 美香",
+    "suspectAge": 28,
+    "suspectJob": "受付事務",
+    "persona": "anxious",
+    "alibiStory": "事件当日、私は午後6時に退社して、まっすぐ家に帰りました。会社には戻っていません。",
+    "weakPoint": "退社時刻のセキュリティカード打刻と防犯カメラ映像に矛盾がある",
+    "contradictionKeywords": ["カード", "打刻", "カメラ", "防犯", "戻った", "再入館", "残業"],
+    "evidenceTriggers": [
+      {"keywords": ["カード", "打刻"], "title": "セキュリティカード履歴", "detail": "午後9時に再入館記録がある"},
+      {"keywords": ["カメラ", "防犯"], "title": "防犯カメラ映像", "detail": "深夜に金庫室前を歩く姿が映っている"},
+      {"keywords": ["借金", "ギャンブル", "金"], "title": "借金の存在", "detail": "消費者金融に300万円の借入記録がある"}
+    ],
+    "choicePool": {
+      "opening": [
+        {"text": "退社後、どこへ行きましたか？", "category": "neutral"},
+        {"text": "金庫の鍵を扱う立場ですか？", "category": "neutral"},
+        {"text": "経済的に困っていることは？", "category": "pressing"},
+        {"text": "正直に話してください", "category": "neutral"}
+      ],
+      "pressing": [
+        {"text": "セキュリティカードの記録を確認しましょうか？", "category": "pressing"},
+        {"text": "防犯カメラに何か映っていたら困りますか？", "category": "pressing"},
+        {"text": "あの夜、本当に家に直行しましたか？", "category": "pressing"},
+        {"text": "借金があるという情報があります", "category": "pressing"}
+      ],
+      "aggressive": [
+        {"text": "嘘はもうばれていますよ", "category": "aggressive"},
+        {"text": "ギャンブルで全部使ったんでしょう", "category": "aggressive"},
+        {"text": "カメラに映っていた人物はあなたです", "category": "aggressive"}
+      ]
+    }
+  },
+  {
+    "id": "fallback-003",
+    "stageNumber": 3,
+    "caseType": "fraud",
+    "victimName": "高齢者 複数名",
+    "weapon": "投資詐欺",
+    "trueMotive": "高齢者を狙って架空の不動産投資話を持ちかけ、約1億円を騙し取った",
+    "difficulty": 2,
+    "suspectName": "渡辺 達也",
+    "suspectAge": 35,
+    "suspectJob": "金融コンサルタント",
+    "persona": "intellectual",
+    "alibiStory": "私の提案した投資商品は適法な仕組みで、被害者の方々は皆、契約書に署名されました。詐欺ではなく、正当な投資判断の結果です。",
+    "weakPoint": "実在しない不動産物件の登記情報を提示していた",
+    "contradictionKeywords": ["登記", "物件", "実在", "存在", "架空", "偽造", "虚偽"],
+    "evidenceTriggers": [
+      {"keywords": ["登記", "物件"], "title": "登記情報の不在", "detail": "提示された物件は登記簿に存在しない"},
+      {"keywords": ["契約書", "署名"], "title": "契約書の偽造印", "detail": "判定で契約書の社印が偽造と判明"},
+      {"keywords": ["顧客", "高齢者", "被害"], "title": "被害者の証言", "detail": "全員が口頭で確実な利回りを保証されたと証言"}
+    ],
+    "choicePool": {
+      "opening": [
+        {"text": "投資商品の概要を教えてください", "category": "neutral"},
+        {"text": "顧客はどのように集めましたか？", "category": "neutral"},
+        {"text": "物件の登記は確認されましたか？", "category": "pressing"},
+        {"text": "顧客への説明書面はありますか？", "category": "neutral"}
+      ],
+      "pressing": [
+        {"text": "登記情報が存在しないのはなぜです？", "category": "pressing"},
+        {"text": "契約書の社印について調べました", "category": "pressing"},
+        {"text": "口頭で利回りを保証しましたね？", "category": "pressing"},
+        {"text": "高齢者ばかり狙ったのはなぜ？", "category": "pressing"}
+      ],
+      "aggressive": [
+        {"text": "あなたの論理はもう破綻している", "category": "aggressive"},
+        {"text": "1億円はどこに消えましたか", "category": "aggressive"},
+        {"text": "全部架空だったんでしょう？", "category": "aggressive"}
+      ]
+    }
+  },
+  {
+    "id": "fallback-004",
+    "stageNumber": 4,
+    "caseType": "kidnap",
+    "victimName": "中村 美咲（5歳）",
+    "weapon": "車での連れ去り",
+    "trueMotive": "元配偶者への報復として、子どもを連れ去り山中に隠した",
+    "difficulty": 2,
+    "suspectName": "中村 浩二",
+    "suspectAge": 38,
+    "suspectJob": "建設作業員",
+    "persona": "aggressive",
+    "alibiStory": "あの子は俺の娘だ！連れ去りなんかじゃない、ただ会いに行っただけだ。何が悪い！",
+    "weakPoint": "親権は元配偶者にあり、面会は制限されていた",
+    "contradictionKeywords": ["親権", "面会", "制限", "離婚", "裁判", "禁止", "山", "場所"],
+    "evidenceTriggers": [
+      {"keywords": ["親権", "裁判"], "title": "親権の判決", "detail": "親権は元配偶者にあり、面会は月1回・面会員立会と判決"},
+      {"keywords": ["山", "場所", "隠した"], "title": "山中の目撃情報", "detail": "現場近くで容疑者の車を目撃した者がいる"},
+      {"keywords": ["元妻", "復讐", "報復"], "title": "報復の動機", "detail": "離婚調停の場で元妻に脅迫的な発言を繰り返していた"}
+    ],
+    "choicePool": {
+      "opening": [
+        {"text": "美咲ちゃんに会いたかったんですね", "category": "neutral"},
+        {"text": "親権はどなたにありますか？", "category": "pressing"},
+        {"text": "面会のルールはどうなっていますか？", "category": "pressing"},
+        {"text": "離婚の経緯を教えてください", "category": "neutral"}
+      ],
+      "pressing": [
+        {"text": "山に連れて行ったのは何のためです？", "category": "pressing"},
+        {"text": "元奥さんへの恨みは？", "category": "pressing"},
+        {"text": "面会禁止が出ていますよね？", "category": "pressing"},
+        {"text": "車の目撃情報があります", "category": "pressing"}
+      ],
+      "aggressive": [
+        {"text": "あなたは復讐したかったんでしょう", "category": "aggressive"},
+        {"text": "娘を人質にしましたね", "category": "aggressive"},
+        {"text": "全部記録されていますよ", "category": "aggressive"}
+      ]
+    }
+  },
+  {
+    "id": "fallback-005",
+    "stageNumber": 5,
+    "caseType": "betrayal",
+    "victimName": "親友 木村 翔",
+    "weapon": "信頼を利用した裏切り",
+    "trueMotive": "親友の起業アイデアを盗み、先に特許出願して数億円の利益を得た",
+    "difficulty": 3,
+    "suspectName": "林 健一",
+    "suspectAge": 32,
+    "suspectJob": "ベンチャー経営者",
+    "persona": "pitiful",
+    "alibiStory": "翔とは長年の親友です。アイデアは独立して思いついたもので、偶然似ていただけ。彼を裏切るなんて、ありえません。",
+    "weakPoint": "特許出願日が、被害者からアイデアを聞いた飲み会の翌週だった",
+    "contradictionKeywords": ["飲み会", "翌週", "出願日", "聞いた", "話した", "タイミング", "日程"],
+    "evidenceTriggers": [
+      {"keywords": ["飲み会", "話した"], "title": "飲み会の証言", "detail": "他の参加者が、被害者がアイデアを語る場面を覚えている"},
+      {"keywords": ["出願", "特許", "日"], "title": "特許出願日", "detail": "出願日は飲み会の8日後で異常に早い"},
+      {"keywords": ["金", "利益", "億"], "title": "資金フロー", "detail": "出願後すぐに大手投資から3億の出資を受けた"}
+    ],
+    "choicePool": {
+      "opening": [
+        {"text": "翔さんとはどんな関係でした？", "category": "neutral"},
+        {"text": "アイデアはいつ思いつきましたか？", "category": "pressing"},
+        {"text": "特許の出願日を覚えていますか？", "category": "pressing"},
+        {"text": "翔さんから話を聞いたことは？", "category": "pressing"}
+      ],
+      "pressing": [
+        {"text": "飲み会で何を話しましたか？", "category": "pressing"},
+        {"text": "出願が翌週なのは早すぎませんか", "category": "pressing"},
+        {"text": "翔さんが先に語っていた記録があります", "category": "pressing"},
+        {"text": "資金調達のタイミングが完璧すぎる", "category": "pressing"}
+      ],
+      "aggressive": [
+        {"text": "親友を踏み台にしましたね", "category": "aggressive"},
+        {"text": "あなたの泣き落としは通じない", "category": "aggressive"},
+        {"text": "全部仕組んでいたんでしょう", "category": "aggressive"}
+      ]
+    }
+  },
+  {
+    "id": "fallback-006",
+    "stageNumber": 6,
+    "caseType": "spy",
+    "victimName": "技研 株式会社",
+    "weapon": "USBメモリでの情報持ち出し",
+    "trueMotive": "競合他社からの依頼で、開発中の新技術データを持ち出し1000万円を受け取った",
+    "difficulty": 3,
+    "suspectName": "高橋 雄介",
+    "suspectAge": 45,
+    "suspectJob": "研究開発主任",
+    "persona": "stoic",
+    "alibiStory": "USBメモリの持ち込みは社内ルール上禁止です。私は使用していません。当該データには通常業務以外でアクセスしていません。",
+    "weakPoint": "退社時のセキュリティゲートでUSB所持の警報履歴がある",
+    "contradictionKeywords": ["USB", "警報", "ゲート", "セキュリティ", "持ち込み", "持ち出し", "競合"],
+    "evidenceTriggers": [
+      {"keywords": ["USB", "ゲート"], "title": "ゲート警報履歴", "detail": "退社時にUSB検知警報が3度作動している"},
+      {"keywords": ["アクセス", "ログ"], "title": "サーバーアクセスログ", "detail": "深夜の異常アクセスが容疑者IDで残っている"},
+      {"keywords": ["金", "競合", "口座"], "title": "海外口座への入金", "detail": "事件後、競合社系列から1000万円が容疑者口座に入金"}
+    ],
+    "choicePool": {
+      "opening": [
+        {"text": "USB持ち込みのルールは？", "category": "neutral"},
+        {"text": "深夜にサーバへアクセスしたことは？", "category": "pressing"},
+        {"text": "競合他社との接点は？", "category": "pressing"},
+        {"text": "業務以外でデータを見たことは？", "category": "neutral"}
+      ],
+      "pressing": [
+        {"text": "ゲートの警報履歴が残っています", "category": "pressing"},
+        {"text": "アクセスログが矛盾します", "category": "pressing"},
+        {"text": "海外口座への入金記録があります", "category": "pressing"},
+        {"text": "競合の人物と会いましたよね", "category": "pressing"}
+      ],
+      "aggressive": [
+        {"text": "全部記録に残っているんですよ", "category": "aggressive"},
+        {"text": "1000万円はどう説明します", "category": "aggressive"},
+        {"text": "産業スパイ罪は重いですよ", "category": "aggressive"}
+      ]
+    }
+  },
+  {
+    "id": "fallback-007",
+    "stageNumber": 7,
+    "caseType": "forgery",
+    "victimName": "市役所 戸籍課",
+    "weapon": "偽造印鑑",
+    "trueMotive": "祖母の財産を独占するため、遺言書を偽造して家族に黙って相続手続きをした",
+    "difficulty": 3,
+    "suspectName": "井上 由美",
+    "suspectAge": 50,
+    "suspectJob": "主婦",
+    "persona": "pitiful",
+    "alibiStory": "母（祖母）は生前、私に全財産を譲ると言ってくれていました。遺言書も母自身が書いたものです。偽造などしていません。",
+    "weakPoint": "遺言書の筆跡が、祖母の他の文書と明らかに異なる",
+    "contradictionKeywords": ["筆跡", "違う", "鑑定", "他の", "比較", "本人", "印鑑", "判子"],
+    "evidenceTriggers": [
+      {"keywords": ["筆跡", "鑑定"], "title": "筆跡鑑定結果", "detail": "祖母の他文書との比較で別人筆跡と判定された"},
+      {"keywords": ["印鑑", "判子"], "title": "印鑑の不審点", "detail": "実印の印影が新規作成された痕跡を持つ"},
+      {"keywords": ["家族", "兄弟", "姉妹"], "title": "家族の証言", "detail": "他の兄弟が遺言の話を一切聞いていない"}
+    ],
+    "choicePool": {
+      "opening": [
+        {"text": "お母様の容態はどうでしたか？", "category": "neutral"},
+        {"text": "遺言書を見つけたのはいつですか？", "category": "pressing"},
+        {"text": "家族には伝えましたか？", "category": "pressing"},
+        {"text": "印鑑はどなたが押しました？", "category": "pressing"}
+      ],
+      "pressing": [
+        {"text": "筆跡鑑定の結果を見ましたか？", "category": "pressing"},
+        {"text": "兄弟は全く聞いていないそうです", "category": "pressing"},
+        {"text": "印鑑が新しく作られた痕跡があります", "category": "pressing"},
+        {"text": "なぜあなただけに譲られたのです？", "category": "pressing"}
+      ],
+      "aggressive": [
+        {"text": "あなたの涙では誤魔化せません", "category": "aggressive"},
+        {"text": "全て偽造だと判明しています", "category": "aggressive"},
+        {"text": "家族を欺いたんですね", "category": "aggressive"}
+      ]
+    }
+  },
+  {
+    "id": "fallback-008",
+    "stageNumber": 8,
+    "caseType": "smuggle",
+    "victimName": "国家機関",
+    "weapon": "貨物船",
+    "trueMotive": "海外の組織と組んで違法薬物を密輸し、国内に流通させた",
+    "difficulty": 4,
+    "suspectName": "森田 一郎",
+    "suspectAge": 55,
+    "suspectJob": "貿易会社経営",
+    "persona": "intellectual",
+    "alibiStory": "弊社の貨物は適切に通関手続きを経ています。違法な品目は一切扱っておりません。誰かに利用されたか、誤解があるはずです。",
+    "weakPoint": "通関書類の品目欄と実際の貨物内容が大きく食い違っていた",
+    "contradictionKeywords": ["通関", "書類", "品目", "実際", "内容", "申告", "薬物"],
+    "evidenceTriggers": [
+      {"keywords": ["通関", "申告"], "title": "通関書類の不一致", "detail": "申告品目は機械部品、実際はビニール袋に小分けされた粉末"},
+      {"keywords": ["貨物", "船"], "title": "船舶の航跡", "detail": "公海上で身元不明の小型船と接触した記録"},
+      {"keywords": ["組織", "海外", "金"], "title": "海外送金", "detail": "薬物流通組織への送金記録3件"}
+    ],
+    "choicePool": {
+      "opening": [
+        {"text": "通常の貨物の流れを教えてください", "category": "neutral"},
+        {"text": "通関書類の作成は誰が？", "category": "pressing"},
+        {"text": "公海上での接触記録は？", "category": "pressing"},
+        {"text": "海外取引先について", "category": "neutral"}
+      ],
+      "pressing": [
+        {"text": "申告品目と実物が違います", "category": "pressing"},
+        {"text": "船舶の航跡がおかしい", "category": "pressing"},
+        {"text": "送金記録があります", "category": "pressing"},
+        {"text": "誰に利用されたんです？", "category": "pressing"}
+      ],
+      "aggressive": [
+        {"text": "あなたの弁護士理論は通用しない", "category": "aggressive"},
+        {"text": "薬物を流通させた責任は重い", "category": "aggressive"},
+        {"text": "もう逃げられませんよ", "category": "aggressive"}
+      ]
+    }
+  },
+  {
+    "id": "fallback-009",
+    "stageNumber": 9,
+    "caseType": "scandal",
+    "victimName": "市民 多数",
+    "weapon": "情報操作",
+    "trueMotive": "選挙で勝つため、対立候補のスキャンダルをでっちあげSNSで拡散させた",
+    "difficulty": 4,
+    "suspectName": "石川 政司",
+    "suspectAge": 48,
+    "suspectJob": "市議会議員",
+    "persona": "aggressive",
+    "alibiStory": "私はあの候補に関する情報を知っていただけだ。市民の知る権利として共有した。それの何が悪い！",
+    "weakPoint": "拡散された情報が完全な捏造で、ソースが存在しない",
+    "contradictionKeywords": ["ソース", "出典", "根拠", "捏造", "事実", "確認", "証拠"],
+    "evidenceTriggers": [
+      {"keywords": ["ソース", "出典"], "title": "ソース不在", "detail": "提示元とされた人物が実在しない"},
+      {"keywords": ["SNS", "拡散", "アカウント"], "title": "ボットアカウント", "detail": "拡散経路が容疑者管理のボットアカウント群"},
+      {"keywords": ["金", "費用", "支払"], "title": "拡散費用", "detail": "業者への支払い記録が存在する"}
+    ],
+    "choicePool": {
+      "opening": [
+        {"text": "情報源を教えてください", "category": "pressing"},
+        {"text": "拡散の経路は？", "category": "pressing"},
+        {"text": "市民の知る権利と仰いますが", "category": "neutral"},
+        {"text": "選挙対策ですか？", "category": "pressing"}
+      ],
+      "pressing": [
+        {"text": "ソースの人物が実在しません", "category": "pressing"},
+        {"text": "ボットアカウントを使いましたね", "category": "pressing"},
+        {"text": "業者への支払い記録があります", "category": "pressing"},
+        {"text": "捏造と分かっていたでしょう", "category": "pressing"}
+      ],
+      "aggressive": [
+        {"text": "民主主義を歪めた罪は重い", "category": "aggressive"},
+        {"text": "怒鳴っても無駄ですよ", "category": "aggressive"},
+        {"text": "全て計画的でしたね", "category": "aggressive"}
+      ]
+    }
+  },
+  {
+    "id": "fallback-010",
+    "stageNumber": 10,
+    "caseType": "betrayal",
+    "victimName": "妻 山本 桜",
+    "weapon": "二重生活",
+    "trueMotive": "10年間にわたり別の女性と二重生活を送り、家族の貯金を秘密の家庭に流していた",
+    "difficulty": 4,
+    "suspectName": "山本 圭吾",
+    "suspectAge": 45,
+    "suspectJob": "営業部長",
+    "persona": "anxious",
+    "alibiStory": "出張が多くて家を空けることはあります。でも他に女性なんていません。妻と子どもが大事です。本当です。",
+    "weakPoint": "出張先のホテル領収書と実際の出張記録が一致しない",
+    "contradictionKeywords": ["出張", "ホテル", "領収書", "記録", "別の", "別人", "家", "女性"],
+    "evidenceTriggers": [
+      {"keywords": ["出張", "記録"], "title": "出張記録の食い違い", "detail": "会社の出張記録と本人申告先が別の都市"},
+      {"keywords": ["ホテル", "領収書"], "title": "別住居の家賃", "detail": "別の都市にマンションの賃貸契約が見つかった"},
+      {"keywords": ["金", "貯金", "送金"], "title": "貯金の流出", "detail": "家族口座から月15万円が長期で別口座へ送金"}
+    ],
+    "choicePool": {
+      "opening": [
+        {"text": "出張の頻度はどれくらい？", "category": "neutral"},
+        {"text": "奥さんとの関係は？", "category": "neutral"},
+        {"text": "別の都市に部屋を借りていますか？", "category": "pressing"},
+        {"text": "貯金の動きは把握していますか？", "category": "pressing"}
+      ],
+      "pressing": [
+        {"text": "出張先と申告先が別の都市です", "category": "pressing"},
+        {"text": "賃貸契約書を確認しました", "category": "pressing"},
+        {"text": "別口座への送金が10年続いています", "category": "pressing"},
+        {"text": "もう一つの家庭がありますね", "category": "pressing"}
+      ],
+      "aggressive": [
+        {"text": "嘘で家族を欺いたんですよ", "category": "aggressive"},
+        {"text": "10年もの裏切りは重い", "category": "aggressive"},
+        {"text": "全部証拠が揃っています", "category": "aggressive"}
+      ]
+    }
+  }
+]

@@ -1,18 +1,14 @@
-//
-//  ClaudeBestGameTests.swift
-//  ClaudeBestGameTests
-//
-//  Created by chang chiawei on 2026/05/07.
-//
+import XCTest
+@testable import ClaudeBestGame
 
-import Testing
-
-struct ClaudeBestGameTests {
-
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-        // Swift Testing Documentation
-        // https://developer.apple.com/documentation/testing
+final class SmokeTests: XCTestCase {
+    func testFallbackCasesLoad() {
+        let cases = FallbackCaseProvider.loadAll()
+        XCTAssertEqual(cases.count, 10, "10件のフォールバック事件がロードされるはず")
+        for c in cases {
+            XCTAssertFalse(c.suspectName.isEmpty)
+            XCTAssertFalse(c.alibiStory.isEmpty)
+            XCTAssertFalse(c.contradictionKeywords.isEmpty)
+        }
     }
-
 }
