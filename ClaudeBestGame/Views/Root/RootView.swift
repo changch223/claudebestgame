@@ -23,6 +23,14 @@ struct RootView: View {
         .task {
             rootVM.bind(repository: ProgressRepository(context: modelContext))
         }
+        .fullScreenCover(isPresented: Binding(
+            get: { rootVM.showingTutorial },
+            set: { newValue in
+                if !newValue { rootVM.dismissTutorial() }
+            }
+        )) {
+            TutorialView(onClose: { rootVM.dismissTutorial() })
+        }
     }
 
     @ViewBuilder

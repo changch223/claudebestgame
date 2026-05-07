@@ -6,15 +6,28 @@ import Observation
 @Observable
 final class GameRootViewModel {
     var screen: GameScreen = .menu
+    var showingTutorial: Bool = false
     private(set) var interrogationVM: InterrogationViewModel?
     private(set) var repository: ProgressRepository?
 
+    private let tutorialKey = "claudebestgame.tutorial.seen.v2"
+
     func bind(repository: ProgressRepository) {
         self.repository = repository
+        // Show tutorial on first launch
+        if !UserDefaults.standard.bool(forKey: tutorialKey) {
+            showingTutorial = true
+        }
     }
 
     func progress() -> Progress? {
         repository?.load()
+    }
+
+    func showTutorial() { showingTutorial = true }
+    func dismissTutorial() {
+        UserDefaults.standard.set(true, forKey: tutorialKey)
+        showingTutorial = false
     }
 
     /// Begin a fresh attempt for the next stage in the campaign.

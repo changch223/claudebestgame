@@ -19,6 +19,19 @@ struct InterrogationView: View {
                     persona: c.persona
                 )
                 .padding(.horizontal, 12)
+                if viewModel.turnIndex == 0 && viewModel.loopIndex == 0 {
+                    HStack(alignment: .top, spacing: 6) {
+                        Image(systemName: "lightbulb.fill")
+                            .foregroundStyle(.yellow)
+                        Text("アリバイの中の不自然な点を質問で突け")
+                            .font(.caption2.bold())
+                            .foregroundStyle(.yellow)
+                    }
+                    .padding(.horizontal, 8).padding(.vertical, 5)
+                    .background(Color.yellow.opacity(0.1))
+                    .clipShape(Capsule())
+                    .padding(.horizontal, 12)
+                }
             }
             DialogueLog(
                 messages: viewModel.messages,

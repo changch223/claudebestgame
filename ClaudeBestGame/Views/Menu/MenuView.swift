@@ -57,10 +57,26 @@ struct MenuView: View {
 
             Spacer()
 
-            if let progress {
-                statsView(progress: progress)
-                    .padding(.bottom, 24)
+            VStack(spacing: 8) {
+                Button {
+                    rootVM.showTutorial()
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "questionmark.circle")
+                        Text("遊び方を見る")
+                    }
+                    .font(.callout)
+                    .foregroundStyle(.white.opacity(0.7))
+                    .padding(.horizontal, 16).padding(.vertical, 8)
+                    .background(Color.white.opacity(0.08))
+                    .clipShape(Capsule())
+                }
+
+                if let progress {
+                    statsView(progress: progress)
+                }
             }
+            .padding(.bottom, 24)
         }
         .background(Color.black)
     }

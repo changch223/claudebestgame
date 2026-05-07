@@ -22,6 +22,8 @@ struct DefeatView: View {
 
             if !viewModel.ownedEvidence.isEmpty {
                 evidencePreview
+            } else {
+                noEvidenceHint
             }
 
             VStack(spacing: 4) {
@@ -69,6 +71,29 @@ struct DefeatView: View {
             return "容疑者が黙秘した"
         }
         return "ターン切れ"
+    }
+
+    private var noEvidenceHint: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Label("ヒント", systemImage: "lightbulb.fill")
+                .font(.subheadline.bold())
+                .foregroundStyle(.yellow)
+            Text("""
+            証拠がまだ集まっていません。再挑戦時は **アリバイの細部を突く質問**（追求カテゴリ・青色）を選んでみましょう。
+
+            例：「夕食」「帰宅時刻」「妻」など、容疑者のアリバイに含まれるキーワードを問いただすと証拠が見つかります。
+            """)
+            .font(.caption)
+            .foregroundStyle(.white.opacity(0.85))
+        }
+        .padding(12)
+        .background(Color.yellow.opacity(0.1))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.yellow.opacity(0.4), lineWidth: 1)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .padding(.horizontal)
     }
 
     private var evidencePreview: some View {
